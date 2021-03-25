@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile1"
+    app:startDestination="@+id/navigation1">
+
+    <fragment
+        android:id="@+id/navigation1"
+        android:name="com.example.healthemanager1.ui.dashboard.SleepManager.pageFragment1"
+        android:label="@string/title_home"
+
+        tools:layout="@layout/fg_da_sleep_record" />
+
+    <fragment
+        android:id="@+id/navigation2"
+        android:name="com.example.healthemanager1.ui.dashboard.SleepManager.pageFragment2"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fg_da_sleep_result" />
+
+
+</navigation>

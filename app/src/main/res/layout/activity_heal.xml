@@ -1,0 +1,50 @@
+<RelativeLayout
+    android:id="@+id/main_layout"
+    android:background="@color/activity_bg_color"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:id="@+id/category_layout"
+        android:background="#00C4B3"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp">
+
+
+        <ImageView android:id="@+id/icon_category"
+            android:layout_width="@dimen/top_category_height"
+            android:layout_height="@dimen/top_category_height"
+            android:src="@drawable/ic_category_expand"
+            android:contentDescription="@string/app_name"
+            android:scaleType="center"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/top_category_height"
+            android:layout_toLeftOf="@id/icon_category"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true">
+
+            <com.example.healthemanager1.ui.home.healFragment.widget.CategoryTabStrip
+                android:id="@+id/category_strip"
+                android:paddingLeft="6.0dip"
+                android:paddingRight="6.0dip"
+                android:clipToPadding="false"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/top_category_height" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/category_layout"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+
+       />
+</RelativeLayout>

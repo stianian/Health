@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile2"
+    app:startDestination="@+id/navigation_th1">
+
+    <fragment
+        android:id="@+id/navigation_th1"
+        android:name="com.example.healthemanager1.ui.dashboard.Drink.FragmentThirsty1"
+        android:label="@string/title_home"
+
+        tools:layout="@layout/fg_da_drink_record" />
+
+    <fragment
+        android:id="@+id/navigation_th2"
+        android:name="com.example.healthemanager1.ui.dashboard.Drink.FragmentThirsty2"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fg_da_drink_result" />
+
+
+</navigation>
