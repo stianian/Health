@@ -157,7 +157,28 @@ public class PlanDBDao {
 
 
 
+    public String getSleepValue(String name,String data){
 
+
+        Cursor mCursor = mDatabase.rawQuery("select * from project where user_name = ? and sleep = ?", new String[]{name,data} );
+        String myFloats = null;
+
+        int ColumnIndex = mCursor.getColumnIndex(RANGE_TIME);
+
+
+
+        while(mCursor.moveToNext()){// cursor.moveToNext() 向下移动一行,如果有内容，返回true
+
+
+                myFloats = mCursor.getString(ColumnIndex);
+                mCursor.moveToNext();
+
+
+
+        }
+        mCursor.close();
+        return myFloats;
+    }
 
     public List<PlanBean> getPlanByPage(String name,String data){
 

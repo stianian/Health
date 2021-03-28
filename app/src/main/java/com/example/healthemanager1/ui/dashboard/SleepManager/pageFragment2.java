@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewDebug;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -250,11 +251,11 @@ public class pageFragment2 extends Fragment {
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initDate() {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date1 = new Date();
 
         /*========== 柱状图数据填充 ==========*/
-        String[] range= MyApplication.mDBMaster.planDBDao.getvalue2(user_name1,0);
+//        String[] range= MyApplication.mDBMaster.planDBDao.getvalue2(user_name1,0);
 //        String[] date=MyApplication.mDBMaster.planDBDao.getvalue2(user_name1,1);
 //
 //        int start=0;
@@ -263,30 +264,39 @@ public class pageFragment2 extends Fragment {
         List<SubcolumnValue> subcolumnValueList;     //子柱列表（即一个柱子，因为一个柱子可分为多个子柱）
         List<AxisValue> axisValues = new ArrayList<>();//创建x轴数据
 
-        int length=range.length;
-        String[] range1=new String[length];
-        String[] range2=new String[7];
-        for(int i=0;i<range.length;i++){
-            range1[i]=String.valueOf(rangeTime(range[i]));
-        }
-        if(length<7){
-            for(int i=0;i<7-length;i++){
-                range2[i]="0";
-            }
-            for(int i=7-length;i<7;i++){
-                range2[i]=range1[i-7+length];
-            }
-        } else {
-            for(int i=0;i<7;i++){
-                range2[i]=range1[length-7+i];
-            }
-
-        }
+//        int length=range.length;
+//        String[] range1=new String[length];
+//        String[] range2=new String[7];
+//        for(int i=0;i<range.length;i++){
+//            range1[i]=String.valueOf(rangeTime(range[i]));
+//        }
+//        if(length<7){
+//            for(int i=0;i<7-length;i++){
+//                range2[i]="0";
+//            }
+//            for(int i=7-length;i<7;i++){
+//                range2[i]=range1[i-7+length];
+//            }
+//        } else {
+//            for(int i=0;i<7;i++){
+//                range2[i]=range1[length-7+i];
+//            }
+//
+//        }
 
         for (int i = 0; i < 7; ++i) {
             subcolumnValueList = new ArrayList<>();//每个子柱的集合
             String d = simpleDateFormat.format(getNextDate(date1,i-6));
-            subcolumnValueList.add(new SubcolumnValue(Float.parseFloat(range2[i]), R.color.s2));//每个子柱集合的数据
+            String x=null;
+            x=MyApplication.mDBMaster.planDBDao.getSleepValue(user_name1,d);
+            float range1;
+            if(x==null){
+                range1=0;
+            }else{
+                range1=rangeTime(x);
+            }
+
+            subcolumnValueList.add(new SubcolumnValue(range1, R.color.s2));//每个子柱集合的数据
 
             axisValues.add(new AxisValue(i).setLabel(d));
 
