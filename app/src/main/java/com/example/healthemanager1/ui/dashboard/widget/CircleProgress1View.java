@@ -212,10 +212,5 @@ public class CircleProgress1View extends View {
         canvas.drawText(mLabeText, getWidth() / 2 - mTextRect.width() / 2,
                 getHeight() / 2 - progressTextHeight / 2 - mTextRect.height(), mLabelTextPaint);
 
-
-
-
-
-
     }
 }

@@ -42,7 +42,6 @@ public class CircleProgressView extends View {
      */
     private float mArcWidth;//弧线宽度
     private int mScaleCount;//刻度的个数
-
     private int mStartColor;//开始颜色
     private int mEndColor;//结束颜色
     /* 渐变颜色数组 */
@@ -127,8 +126,6 @@ public class CircleProgressView extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleProgressView, defStyleAttr, 0);
         mArcWidth = a.getDimensionPixelSize(R.styleable.CircleProgressView_arcWidth, DensityUtils.dp2px(context, 5));
         mScaleCount = a.getInt(R.styleable.CircleProgressView_scaleCount, 4);
-//        mStartColor = a.getColor(R.styleable.CircleProgressView_startColor, 0xffF3F4F8);
-//        mEndColor = a.getColor(R.styleable.CircleProgressView_endColor, 0xffF3F4F8);
         mStartColor = R.color.white;
         mEndColor = R.color.white;
         mColorArray = new int[]{mStartColor, mEndColor};
@@ -140,7 +137,7 @@ public class CircleProgressView extends View {
 
         a.recycle();
         mArcBackPaint = new Paint(Paint.ANTI_ALIAS_FLAG);//抗锯齿
-//        mArcBackPaint.setAntiAlias(true);//抗锯齿
+
         mArcBackPaint.setStyle(Paint.Style.STROKE);//设置画笔是空心的
         mArcBackPaint.setStrokeWidth(mArcWidth*3);//设置空心画笔画出来的边框宽度
         mArcBackPaint.setColor(Color.LTGRAY);//设置画笔颜色
@@ -157,7 +154,6 @@ public class CircleProgressView extends View {
         mLinePaint.setColor(Color.BLACK);
         mLinePaint.setStrokeWidth(DensityUtils.dp2px(context, 0));
 
-
         mProgressTextPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mProgressTextPaint.setStyle(Paint.Style.FILL);//设置画笔是实心的
         mProgressTextPaint.setColor(mTextColor);
@@ -173,10 +169,6 @@ public class CircleProgressView extends View {
         mPaintText.setTextAlign(Paint.Align.CENTER);
         mPaintText.setTextSize(25);
         mPaintText.setAntiAlias(true);
-
-
-
-
         mTextRect = new Rect();
     }
 
@@ -228,7 +220,6 @@ public class CircleProgressView extends View {
         mLabelTextPaint.getTextBounds(mLabeText, 0, mLabeText.length(), mTextRect);
         canvas.drawText(mLabeText, getWidth() / 2 - mTextRect.width() / 2,
                 getHeight() / 2 - progressTextHeight / 2 - mTextRect.height(), mLabelTextPaint);
-
 
 
         for (int i = 1; i <=4; i++) {

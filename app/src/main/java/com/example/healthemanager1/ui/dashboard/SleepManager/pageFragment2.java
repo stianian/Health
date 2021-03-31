@@ -51,6 +51,7 @@ public class pageFragment2 extends Fragment {
     private CircleProgressView circleProgressView;
     private TextView sp1,sp2;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 

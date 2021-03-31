@@ -22,7 +22,6 @@ import java.util.List;
 public class ListViewAdapter extends TreeListViewAdapter {
 
     private OnTreeNodeCheckedChangeListener checkedChangeListener;
-
     public void setCheckedChangeListener(OnTreeNodeCheckedChangeListener checkedChangeListener) {
         this.checkedChangeListener = checkedChangeListener;
     }
@@ -41,12 +40,10 @@ public class ListViewAdapter extends TreeListViewAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-
         holder.tvName.setText(node.getName());
         holder.tvQuality.setText(node.getQuantity());
         holder.tvNameId.setText(node.getNameid());
         holder.imageView.setImageResource(node.getImage());
-
         if (node.getIcon() == -1) {
             holder.ivExpand.setVisibility(View.INVISIBLE);
             holder.checkBox.setVisibility(View.VISIBLE);
@@ -63,7 +60,6 @@ public class ListViewAdapter extends TreeListViewAdapter {
             @Override
             public void onClick(View v) {
                 setChecked(node, holder.checkBox.isChecked());
-
                 if (checkedChangeListener != null) {
                     checkedChangeListener.onCheckChange(node, position,holder.checkBox.isChecked());
                 }
@@ -83,7 +79,7 @@ public class ListViewAdapter extends TreeListViewAdapter {
         private CheckBox checkBox;
         private TextView tvName,tvQuality,tvNameId;
         private ImageView ivExpand;
-        private ImageView imageView,ivDelete;
+        private ImageView imageView;
 
         public ViewHolder(View convertView) {
             checkBox = convertView.findViewById(R.id.cb);

@@ -41,13 +41,12 @@ public class StaticRataFragment extends Fragment {
 
     public LineChartView lineChart;
     private Button add_static;
-
     private ListView static_listview;
     private  StaticAdapter staticAdapter;
     private List<StaticBean> staticBeans;
-    public int totalcount = MyApplication.mDBMaster.staticDBDao.getStaCount();
+    private String[] sta;
+    private int totalcount = MyApplication.mDBMaster.staticDBDao.getStaCount();
     private String[] name_num=new String[totalcount];
-    String[] sta;
     private String user_name1= MyApplication.name.getName() ;
     public List<PointValue> mPointValues = new ArrayList<PointValue>();
     public List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
@@ -60,11 +59,8 @@ public class StaticRataFragment extends Fragment {
         static_listview=(ListView)view.findViewById(R.id.static_listView);
         add_static=(Button)view.findViewById(R.id.add_static);
 
-
-
         new Thread1().start();
         getAxisXLables();//获取x轴的标注
-
 
         initView();
         return view;
@@ -97,8 +93,6 @@ public class StaticRataFragment extends Fragment {
                     try {
 
                         sta=MyApplication.mDBMaster.staticDBDao.getvalue(user_name1);
-
-
                         if(staticBeans==null){
                             staticBeans=MyApplication.mDBMaster.staticDBDao.getStaticNumByPage(user_name1);
 
@@ -176,10 +170,6 @@ public class StaticRataFragment extends Fragment {
         alertDialogBuilder.setView(view);
         final EditText userInput = (EditText) view.findViewById(R.id.static_edit);
 
-
-
-
-
         // 设置Dialog按钮
         alertDialogBuilder.setCancelable(false).
                 setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -208,12 +198,7 @@ public class StaticRataFragment extends Fragment {
 
 
     private void getAxisPoints() {
-
-//        String[] arr=MyApplication.mDBMaster.staticDBDao.getvalue(user_name1);
-
         for (int i = 0; i < sta.length; i++) {
-
-
             mPointValues.add(new PointValue(i, Integer.valueOf(sta[i])));
 
         }
@@ -342,7 +327,6 @@ public class StaticRataFragment extends Fragment {
                     MyApplication.mDBMaster.staticDBDao.deleteStaticNum(staticBeans.get(position).User_StaticRate);
                     //从集合中删除数据
                     staticBeans.remove(position);
-
                     //刷新页面
                     notifyDataSetChanged();
                 }

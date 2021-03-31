@@ -13,9 +13,9 @@ import com.example.healthemanager1.util.DayUtils;
 public class ListViewBottomAdapter extends BaseAdapter {
 
     Context mContext;
-    String[] quantity;
-    String[] drinkName;
-    String[] drinkID;
+    private String[] quantity;
+    private String[] drinkName;
+    private String[] drinkID;
     public ListViewBottomAdapter(Context context,String[] quantity,String[] drinkName,String[] drinkID ){
 
         this.quantity=quantity;
@@ -42,7 +42,6 @@ public class ListViewBottomAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
        ViewHolder vh=null;
         if(convertView==null){
-
             convertView=View.inflate(mContext, R.layout.item_da_drink_list,null);
             vh=new ViewHolder();
             vh.ivName=(ImageView)convertView.findViewById(R.id.iv_drink_db_list_item);
@@ -55,11 +54,8 @@ public class ListViewBottomAdapter extends BaseAdapter {
         vh.ivName.setImageResource(DayUtils.drink[Integer.parseInt(drinkID[position])]);
         vh.drinkTName.setText(drinkName[position]);
         vh.drinkTWater.setText(quantity[position]);
-
         return convertView;
     }
-
-
 
     public static class ViewHolder{
         ImageView ivName;

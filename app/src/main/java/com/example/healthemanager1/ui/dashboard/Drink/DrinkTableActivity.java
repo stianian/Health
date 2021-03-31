@@ -16,11 +16,8 @@ import com.example.healthemanager1.util.DayUtils;
 
 public class DrinkTableActivity extends AppCompatActivity {
     private Context context;
-    ListView drinkTableList;
-
-
+    private ListView drinkTableList;
     private TextView tip1,tip2;
-
     private TableListAdapter tableListAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +28,6 @@ public class DrinkTableActivity extends AppCompatActivity {
        drinkTableList=(ListView)findViewById(R.id.drink_table_list);
        tip1=(TextView)findViewById(R.id.tip_1);
        tip2=(TextView)findViewById(R.id.tip_2);
-
        tip1.setText(DayUtils.tip1);
        tip2.setText(DayUtils.tip2);
 
@@ -63,7 +59,6 @@ public class DrinkTableActivity extends AppCompatActivity {
         public View getView(int position, View convertView, ViewGroup parent) {
             ViewHolder vh=null;
             if(convertView==null){
-
                 convertView=View.inflate(context, R.layout.item_da_drink_table_list,null);
                 vh=new ViewHolder();
                 vh.ivName=(ImageView)convertView.findViewById(R.id.iv_drink_table);

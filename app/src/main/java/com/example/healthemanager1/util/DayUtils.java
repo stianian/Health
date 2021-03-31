@@ -16,18 +16,6 @@ public class DayUtils {
 
     }
 
-
-//    public static String format(int value) {
-//        String tmpStr = String.valueOf(value);
-//        if (value < 10) {
-//            tmpStr = "0" + tmpStr;
-//        }
-//        return tmpStr;
-//    }
-
-
-
-
     public static String[] breakfirst={"鸡蛋","牛奶","酸奶","豆浆","馒头"};
     public static String[] breakfirst1={"139","116","70","31","223"};
     public static String[] breakfirst0={"1","2","3","4","5"};

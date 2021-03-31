@@ -31,13 +31,10 @@ public  class pageFragment1 extends Fragment {
     private NotificationsViewModel notificationsViewModel;
     private int year,month,day ;
     private TextView re1,re2;
-    Button add_sleep,add_r;
-    String s1;//日期
-    String userName= MyApplication.name.getName();
+    private Button add_sleep,add_r;
+    private String s1;//日期
     private List<PlanBean> planBeans;
-    public List<PointValue> mPointValues = new ArrayList<PointValue>();
-    public List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
-
+    private String userName= MyApplication.name.getName();
 
     /**
      * 时间选择
@@ -123,7 +120,6 @@ public  class pageFragment1 extends Fragment {
                 year1=String.valueOf(year);
                 s1 = year1+"-"+format(month+1)+"-"+format(day);
                 planBeans= MyApplication.mDBMaster.planDBDao.getPlanByPage(userName,s1);//存入数据库
-
                 if(planBeans.size()==0){
                     re1.setText("暂无数据");
                     re2.setText("暂无数据");

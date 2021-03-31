@@ -18,12 +18,7 @@ public class HealthActivity extends AppCompatActivity {
     private CategoryTabStrip tabs;
     private ViewPager pager;
     private MyPagerAdapter adapter;
-
-    ArrayList<Fragment> fragments;
-
-
-
-
+    private ArrayList<Fragment> fragments;
 
 
     @Override

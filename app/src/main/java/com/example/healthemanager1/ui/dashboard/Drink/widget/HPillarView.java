@@ -32,7 +32,6 @@ import java.util.List;
 public class HPillarView extends View {
 
     private Paint mPaint;
-
     //线的颜色，柱子右边显示**人的颜色
     private int lineColor, dataFontColor;
     //X轴距离左边和右边的距离，Y轴距离上边和下边的距离
@@ -42,7 +41,6 @@ public class HPillarView extends View {
     private float xDividerHeight, yDividerWidth;
     //XY轴刻度颜色
     private int xDividerColor, yDividerColor;
-
     //x轴下面的字体距离X轴的距离，Y轴左边的字体距离Y轴的距离
     private float txtXSpace, txtYSpace;
 
@@ -116,7 +114,6 @@ public class HPillarView extends View {
          */
         initPaintColor(lineColor);
 
-
         /**
          * 绘制Y轴刻度 和 左边的文字
          */
@@ -127,14 +124,6 @@ public class HPillarView extends View {
         //绘制Y轴刻度左边文字l
         Rect yTxtRect;
         mPaint.setTextSize(xyFontSize);
-
-
-
-//        String[] drinking={
-//                "苏打水","可乐","雪碧","橙汁","柠檬汁",
-//                "苹果汁","豆浆","酸奶","牛奶","茶",
-//                "奶茶","咖啡","白水"
-//        };
         for (int i = 0; i < drinkNameList.size(); i++) {
             String number = drinkNameList.get((drinkNameList.size() - 1 - i));
             yTxtRect = new Rect();
@@ -150,37 +139,7 @@ public class HPillarView extends View {
             );
         }
 
-//        for (int i = 0; i < drinking.length; i++) {
-//            String number = drinking[(drinking.length - 1 - i)] ;
-//            yTxtRect = new Rect();
-//            //为了让六个月份居中，测量最大数
-//            mPaint.getTextBounds("白水", 0, 2, yTxtRect);
-//            //设置居中
-//            mPaint.setTextAlign(Paint.Align.CENTER);
-//            canvas.drawText(
-//                    number,
-//                    xLeftSpace - yTxtRect.width() / 2 - txtYSpace,
-//                    yTopSpace + (spaceVertical * i) + yTxtRect.height() / 2,
-//                    mPaint
-//            );
-//        }
 
-        //绘制X轴刻度下面的文字
-//        initPaintColor(lineColor);
-//        mPaint.setTextSize(xyFontSize);
-////        int[] xs = {1000, 2000, 3000, 4000, 5000, 6000, 7000};
-//        Rect xNumberBound;
-//        for (int i = 0; i < xs.length; i++) {
-//            String number = xs[i] + "";
-//            xNumberBound = new Rect();
-//            mPaint.getTextBounds(number, 0, number.length(), xNumberBound);
-//            canvas.drawText(
-//                    number,
-//                    xLeftSpace + yDividerWidth + xSpaceVertical * (i + 1),
-//                    getHeight() - yBottomSpace + xNumberBound.height() + txtXSpace,
-//                    mPaint
-//            );
-//        }
 
         /**
          * 绘制六组数据的柱形图
@@ -241,11 +200,5 @@ public class HPillarView extends View {
         invalidate();
     }
 
-//
-//    public void setData(List<Integer> data,List<String> ) {
-//        dataList.clear();
-//        dataList.addAll(data);
-//        invalidate();
-//    }
 
 }

@@ -43,11 +43,9 @@ public class CustomNumKeyView extends View {
     }
 
     private CallBack mCallBack;// 回调
-
     public void setOnCallBack(CallBack callBack) {
         mCallBack = callBack;
     }
-
     public CustomNumKeyView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context);

@@ -39,11 +39,8 @@ public class ListPopupWindowAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder vh=null;
-
-
         if(convertView==null){
             convertView= LayoutInflater.from(mContext).inflate(R.layout.da_diet_popupview_item,null,false);
-//            convertView=View.inflate(mContext, R.layout.dialog_item_2,null);
             vh=new ViewHolder();
             vh.tvName1= (TextView) convertView.findViewById(R.id.tv_name1);
             vh.tvQuality1=(TextView)convertView.findViewById(R.id.tv_quality1);
@@ -55,13 +52,8 @@ public class ListPopupWindowAdapter extends BaseAdapter {
             vh= (ViewHolder) convertView.getTag();
         }
         DietBean dietBean = dietBeanList.get(position);
-
         vh.tvName1.setText(dietBean.dietName);
         vh.tvQuality1.setText(dietBean.quantity);
-
-//            vh.tvNameId1.setText(dietBean.nameID);
-//            Log.d("xtt",dietBean.nameID);
-//            vh.iv.setImageResource(DayUtils.breakfirst2[position]);
         int sort=Integer.parseInt(dietBean.nameID);
         int x=0;
         if(sort>0&&sort<6){
@@ -78,27 +70,20 @@ public class ListPopupWindowAdapter extends BaseAdapter {
             vh.iv.setImageResource(DayUtils.dinner2[x]);
         }
         vh.ivDelete.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
-                //从数据库中删除数据
-                MyApplication.mDBMaster.dietDBDao.deleteDietNum(dietBeanList.get(position).dietName);
-                //从集合中删除数据
-                dietBeanList.remove(position);
-
-                //刷新页面
-                notifyDataSetChanged();
+                MyApplication.mDBMaster.dietDBDao.deleteDietNum(dietBeanList.get(position).dietName);//从数据库中删除数据
+                dietBeanList.remove(position); //从集合中删除数据
+                notifyDataSetChanged();//刷新页面
             }
         });
 
         return convertView;
 
-
     }
 
 
     public static class ViewHolder {
-
         private TextView tvName1, tvQuality1,tvNameId1;
         private ImageView iv,ivDelete;
     }

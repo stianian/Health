@@ -42,8 +42,6 @@ public class FManagerActivity extends AppCompatActivity {
     private Button btn;
     private ListPopupWindow mListPopupWindow;
     private ListPopupWindowAdapter mListPopupWindowAdapter;
-
-
     private List<DietBean> dietBeanList;
     private String user_name1= MyApplication.name.getName() ;
 
@@ -53,10 +51,8 @@ public class FManagerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_can);
-
         context=this;
         mListView = (ListView) findViewById(R.id.list1);
-
         bt1=(ImageButton)findViewById(R.id.bt_1);
         btn=(Button)findViewById(R.id.bt_2);
         initData();
@@ -70,9 +66,7 @@ public class FManagerActivity extends AppCompatActivity {
          * 第六个参数  闭合的图标
          */
         mAdapter = new ListViewAdapter(mListView, this, dataList, 0, R.mipmap.shiwu, R.mipmap.shiwu);
-
         mListView.setAdapter(mAdapter);
-
         //获取所有节点
         final List<Node> allNodes = mAdapter.getAllNodes();
         for (Node allNode : allNodes) {
@@ -85,16 +79,9 @@ public class FManagerActivity extends AppCompatActivity {
             public void onCheckChange(Node node, int position, boolean isChecked) {
                 //获取所有选中节点
                 List<Node> selectedNode = mAdapter.getSelectedNode();
-
-                System.out.println(node.getName());
-                System.out.println(node.getQuantity());
-
-                System.out.println(isChecked);
                 if(isChecked){
                     showInfo(node.getName(),node.getQuantity(),node.getNameid());
                 }
-
-
 //                for (Node n : selectedNode) {
 //                    System.out.println(n.getQuantity());
 //                    Log.e("xyh", "onCheckChange: " + n.getQuantity());
@@ -111,10 +98,6 @@ public class FManagerActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
         btn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -122,35 +105,18 @@ public class FManagerActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
-
-
-
-
     }
 
 
 
     private void init() {
 
-
-
         if(dietBeanList==null){
-
-
             dietBeanList=MyApplication.mDBMaster.dietDBDao.getDietNumByPage(user_name1, DayUtils.setDay());
         }else{
             dietBeanList.clear();
             dietBeanList.addAll(MyApplication.mDBMaster.dietDBDao.getDietNumByPage(user_name1, DayUtils.setDay()));
         }
-
-
-
         mListPopupWindow=new ListPopupWindow(context);
         mListPopupWindowAdapter=new ListPopupWindowAdapter(dietBeanList, context);
         mListPopupWindow.setAdapter(mListPopupWindowAdapter);
@@ -171,14 +137,12 @@ public class FManagerActivity extends AppCompatActivity {
         dataList.add(node);
         dataList.add(new Node<>("1", "-1", "午餐","","",0));
         dataList.add(new Node<>("2","-1","晚餐","","",0));
-
         //根节点1的二级节点
         dataList.add(new Node<>("3", "0", DayUtils.breakfirst[0],DayUtils.breakfirst1[0],DayUtils.breakfirst0[0],DayUtils.breakfirst2[0]));
         dataList.add(new Node<>("4", "0", DayUtils.breakfirst[1],DayUtils.breakfirst1[1],DayUtils.breakfirst0[1],DayUtils.breakfirst2[1]));
         dataList.add(new Node<>("5", "0", DayUtils.breakfirst[2],DayUtils.breakfirst1[2],DayUtils.breakfirst0[2],DayUtils.breakfirst2[2]));
         dataList.add(new Node<>("6", "0", DayUtils.breakfirst[3],DayUtils.breakfirst1[3],DayUtils.breakfirst0[3],DayUtils.breakfirst2[3]));
         dataList.add(new Node<>("7", "0", DayUtils.breakfirst[4],DayUtils.breakfirst1[4],DayUtils.breakfirst0[4],DayUtils.breakfirst2[4]));
-
         //根节点2的二级节点
         dataList.add(new Node<>("8", "1", DayUtils.lunch[0],DayUtils.lunch1[0],DayUtils.lunch0[0],DayUtils.lunch2[0]));
         dataList.add(new Node<>("9", "1", DayUtils.lunch[1],DayUtils.lunch1[1],DayUtils.lunch0[1],DayUtils.lunch2[1]));
@@ -201,15 +165,6 @@ public class FManagerActivity extends AppCompatActivity {
         FragmentDialog bottomSheetDialog = new FragmentDialog(name,quality,nameID);//这边传参数
         bottomSheetDialog.show(getSupportFragmentManager() ,"Dialog");
     }
-
-//    public void show(){
-//        //BottomSheetDialog bottomSheetDialog=new BottomSheetDialog(context);
-//        //bottomSheetDialog.setContentView(R.layout.template_order);
-//        //bottomSheetDialog.show();
-//        NewDialogFragment bottomSheetDialog = new NewDialogFragment();//这边传参数
-//        bottomSheetDialog.show(getSupportFragmentManager() ,"Dialog");
-//    }
-
 
 }
 

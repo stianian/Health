@@ -18,7 +18,6 @@ public class SleepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep);
-
         BottomNavigationView navView = findViewById(R.id.nav_view1);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -29,13 +28,7 @@ public class SleepActivity extends AppCompatActivity {
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
 
-
-
     }
-
-
-
-
 
 }
 

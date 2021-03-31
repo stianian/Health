@@ -16,10 +16,8 @@ public class NumberPickerDialog extends AlertDialog implements DialogInterface.O
     private final String maxValue = "最大值";
     private final String minValue = "最小值";
     private final String currentValue = "当前值";
-
     private final NumberPicker mNumberPicker;
     private final NumberPicker.OnValueChangeListener mCallback;
-
     private int newVal;
     private int oldVal;
 
@@ -37,22 +35,16 @@ public class NumberPickerDialog extends AlertDialog implements DialogInterface.O
 
         setIcon(0);
         setTitle("设置数字");
-
         Context themeContext = getContext();
         setButton(BUTTON_POSITIVE, "设置", this);
         setButton(BUTTON_NEGATIVE, "取消", this);
-
         LayoutInflater inflater = (LayoutInflater) themeContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.dialog_d_num, null);
         setView(view);
         mNumberPicker = (NumberPicker) view.findViewById(R.id.numberPicker);
-
         mNumberPicker.setMaxValue(maxValueNumber);
         mNumberPicker.setMinValue(minValueNumber);
         mNumberPicker.setValue(currentValueNumber);
-
-
-
         mNumberPicker.setOnValueChangedListener(this);
     }
 
@@ -62,7 +54,6 @@ public class NumberPickerDialog extends AlertDialog implements DialogInterface.O
         state.putInt(maxValue, mNumberPicker.getMaxValue());
         state.putInt(minValue, mNumberPicker.getMinValue());
         state.putInt(currentValue, mNumberPicker.getValue());
-
         return state;
     }
 

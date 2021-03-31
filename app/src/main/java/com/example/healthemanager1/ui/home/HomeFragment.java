@@ -24,17 +24,10 @@ import com.example.healthemanager1.application.MyApplication;
 public class HomeFragment extends Fragment   {
 
     private HomeViewModel homeViewModel;
-
     private TextView name,height,weight,bmi,max_rata,static_rata;
-
-
     private Button more_such;
-
-
     private   String[] user_num;
-
     private Spinner spinner;
-
     private ArrayAdapter<String> adapter;
     private MyApplication allname;
     private static String spinnerValse="";
@@ -42,25 +35,14 @@ public class HomeFragment extends Fragment   {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
         more_such=(Button)view.findViewById(R.id.more_such);
-
         user_num=MyApplication.mDBMaster.userDBDao.getvalue();//获取用户姓名
-
-
-
         spinner = (Spinner)view.findViewById(R.id.sp);
-
         adapter = new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,user_num);//适配器
-
-
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//设置下拉列表的风格
-
         spinner.setAdapter(adapter);
-
         spinner.setOnItemSelectedListener(new SpinnerSelectedListener());
         spinner.setVisibility(View.VISIBLE); //设置默认值
-
         more_such.setOnClickListener(new View.OnClickListener(){
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -72,7 +54,6 @@ public class HomeFragment extends Fragment   {
 
 
         name=(TextView)view.findViewById(R.id.name);
-
         height=(TextView)view.findViewById(R.id.height);
         weight=(TextView)view.findViewById(R.id.weight);
         bmi=(TextView)view.findViewById(R.id.BMI);
@@ -85,20 +66,12 @@ public class HomeFragment extends Fragment   {
 
 
 
-
-
-
-
-
-
     /**
      * 页面每次切回来都会执行onCreateView，spinner的监听就会触发，值就会发生改变
      * static变量用来存放数值，只会初始化一次
      */
 
     class SpinnerSelectedListener implements AdapterView.OnItemSelectedListener {
-
-
 
         public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
             //arg2为位置
@@ -107,11 +80,8 @@ public class HomeFragment extends Fragment   {
             String insert_name1=name.getText().toString();
             MyApplication.name.setName(spinnerValse);
             String[] arr=MyApplication.mDBMaster.heightDBDao.getvalue(insert_name1);//获取升高值
-
             String[] arr1=MyApplication.mDBMaster.weightDBDao.getvalue(insert_name1);
-
             String[] arr2=MyApplication.mDBMaster.maxRateDBDao.getvalue(insert_name1);
-
             String[] arr3=MyApplication.mDBMaster.staticDBDao.getvalue(insert_name1);
 
 
@@ -121,21 +91,17 @@ public class HomeFragment extends Fragment   {
                 return;
             }else {
 
-
                 if(arr.length==0){
                     height.setText("暂无数据");
                 }else {
                     height.setText(arr[arr.length-1]);
                 }
 
-
-
                 if(arr1.length==0){
                     weight.setText("暂无数据");
                 }else {
                     weight.setText(arr1[arr1.length-1]);
                 }
-
 
                 if(arr1.length==0||arr.length==0){
                     bmi.setText("暂无数据");
@@ -180,7 +146,6 @@ public class HomeFragment extends Fragment   {
      */
     public String BMI(String wei_value,String hei_value){
         float x,y,bmi,dd;
-
         String string="暂无数据" ;
         x= Float.parseFloat(wei_value);
         y=Float.parseFloat(hei_value)/100;

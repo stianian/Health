@@ -44,36 +44,17 @@ public class MaxrataFragment extends Fragment {
 
 
     public LineChartView lineChart;
-
-    private Cursor mCursor;
     private ListView max_listview;
     private MaxrataFragment.MaxAdapter maxAdapter;
-
-
-
     private Button addmax;
-
-
-
     private List<MaxRateBean> maxRateBeans;
-    private int pageIndex = 0;
-    private int pageSize = 20;
-    private int totalPage;
-    public int totalcount = MyApplication.mDBMaster.maxRateDBDao.getMaxCount();
+    private List<PointValue> mPointValues = new ArrayList<PointValue>();
+    private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
+
+    private int totalcount = MyApplication.mDBMaster.maxRateDBDao.getMaxCount();
     private String[] name_num=new String[totalcount];
-
-
-
-
-
-    public List<PointValue> mPointValues = new ArrayList<PointValue>();
-    public List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
-
-
     private String user_name1= MyApplication.name.getName() ;
-
-
-    String[] arr;
+    private String[] arr;
 
 
 
@@ -82,12 +63,10 @@ public class MaxrataFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-
         View view=inflater.inflate(R.layout.fg_home_max,null);
         lineChart = (LineChartView) view.findViewById(R.id.line_chart_max);
         max_listview=(ListView)view.findViewById(R.id.max_listView);
         addmax=(Button)view.findViewById(R.id.add_max);
-
         new Thread1().start();
         getAxisXLables();//获取x轴的标注
         initView();
@@ -160,17 +139,13 @@ public class MaxrataFragment extends Fragment {
             while (true) {
                 try {
                     try {
-
                         arr=MyApplication.mDBMaster.maxRateDBDao.getvalue(user_name1);
                         if(maxRateBeans==null){
                             maxRateBeans=  MyApplication.mDBMaster.maxRateDBDao.getMaxNumByPage(user_name1);
-
                         }else{
                             maxRateBeans.clear();//先清除再添加
                             maxRateBeans.addAll(MyApplication.mDBMaster.maxRateDBDao.getMaxNumByPage(user_name1));
                         }
-
-
                         handler1.sendEmptyMessage(1);
 
                     } catch (Exception e) {
@@ -197,11 +172,9 @@ public class MaxrataFragment extends Fragment {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 1://子线程获得了数据，开始刷新页面
-
                     mPointValues.clear();
                     getAxisPoints();//获取坐标点
                     initLineChart();//初始化
-
                     if (maxRateBeans.size() == 0) {
                     } else {
                         if (maxAdapter == null) { //第一次加载
@@ -321,10 +294,8 @@ public class MaxrataFragment extends Fragment {
 
             if(convertView==null){
                 convertView=View.inflate(getContext(), R.layout.item_home_list_max,null);
-
                 vh=new MaxrataFragment.ViewHolder();
                 vh.title= (TextView) convertView.findViewById(R.id.max_time);
-
                 vh.value= (TextView) convertView.findViewById(R.id.max_value);
                 vh.ivDelete = (ImageView) convertView.findViewById(R.id.iv_delete_list_nax);
                 convertView.setTag(vh);

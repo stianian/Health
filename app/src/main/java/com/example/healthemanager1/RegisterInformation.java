@@ -30,10 +30,7 @@ public class RegisterInformation extends AppCompatActivity implements  View.OnCl
     private String[] sexArry = new String[]{ "女", "男"};// 性别选择
 
     private Button name, sex, birth, age, save;
-
-
     private TextView changesex_textview,changename_textview,changebirth_textview,changeage_textview;
-    private Context context;
     private String tvName,tvSex,tvBirth,tvAge;
 
     @Override
@@ -83,7 +80,6 @@ public class RegisterInformation extends AppCompatActivity implements  View.OnCl
 
 
     private DatePickerDialog.OnDateSetListener onDateSetListener = new DatePickerDialog.OnDateSetListener() {
-
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             int mYear = year;
@@ -111,13 +107,10 @@ public class RegisterInformation extends AppCompatActivity implements  View.OnCl
                 break;
             case R.id.save:
 
-
                String username = changename_textview.getText().toString().trim();
                 String user_sex = changesex_textview.getText().toString().trim();
                 String user_age= changeage_textview.getText().toString().trim();
                 String user_data=changebirth_textview.getText().toString().trim();
-
-
                 UserBean userBean=new UserBean(username,user_sex,user_age,user_data);
                 MyApplication.mDBMaster.userDBDao.addUser(userBean);
 
@@ -141,7 +134,6 @@ public class RegisterInformation extends AppCompatActivity implements  View.OnCl
 
 
         private void fillData() {
-
             new Thread() {
                 public void run() {
                     tvName=MyApplication.mDBMaster.userDBDao.getUser(0);
@@ -151,8 +143,6 @@ public class RegisterInformation extends AppCompatActivity implements  View.OnCl
 
                     handler.sendEmptyMessage(1);
                 }
-
-
             }.start();
         }
 

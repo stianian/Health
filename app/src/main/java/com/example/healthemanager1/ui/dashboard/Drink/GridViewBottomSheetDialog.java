@@ -30,7 +30,6 @@ public class GridViewBottomSheetDialog extends BottomSheetDialogFragment impleme
     private String user_name1= MyApplication.name.getName() ;
     private GridView gridView;
     private BottomSheetBehavior<View> mBottomSheetBehavior;
-
     private GridViewBottomAdapter gridPopupBottomAdapter;
     private EditText editText;
     private CustomNumKeyViewThirsty customNumKeyViewThirsty;
@@ -41,15 +40,12 @@ public class GridViewBottomSheetDialog extends BottomSheetDialogFragment impleme
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.da_drink_bd_grid, container, false);
         gridView = (GridView) view.findViewById(R.id.gridview);
-
         select=(ImageView)view.findViewById(R.id.selected_im);
         editText = (EditText) view.findViewById(R.id.ml);
         editText.setInputType(InputType.TYPE_NULL);// 设置不弹出系统键盘
         customNumKeyViewThirsty=(CustomNumKeyViewThirsty) view.findViewById(R.id.keyboardview1);
         customNumKeyViewThirsty.setOnCallBack(this);
         initViews();
-
-
         return view;
     }
 
@@ -58,13 +54,10 @@ public class GridViewBottomSheetDialog extends BottomSheetDialogFragment impleme
         gridPopupBottomAdapter=new GridViewBottomAdapter(getContext());
         gridView.setAdapter(gridPopupBottomAdapter);
         gridView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 GridViewBottomSheetDialog.this.position=position;
                 Toast.makeText(getContext(), DayUtils.drinking[position]+"", Toast.LENGTH_SHORT).show();
-
-
                 select.setImageResource(DayUtils.drink[position]);
                 return false;
             }
@@ -123,7 +116,6 @@ public class GridViewBottomSheetDialog extends BottomSheetDialogFragment impleme
     public void deleteAllNum() {
         int last = editText.getText().length();
         if (last > 0) {
-
             editText.getText().delete(0 , last);
         }
     }

@@ -39,26 +39,18 @@ import lecho.lib.hellocharts.view.LineChartView;
 
 public class HeightFragment extends Fragment  {
     public LineChartView lineChart;
-
-
     private Button addheight;
-
     private ListView height_listview;
     private HeightAdapter heightAdapter;
     private List<HeightBean> heightBeanList;
 
-    public int totalcount =MyApplication.mDBMaster.heightDBDao.getHeightCount();
+    private List<PointValue> mPointValues = new ArrayList<PointValue>();
+    private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
+    private String[] height;
+
+    private int totalcount =MyApplication.mDBMaster.heightDBDao.getHeightCount();
     private String[] name_num=new String[totalcount];
-
-
-
     private String user_name1= MyApplication.name.getName() ;
-
-    public List<PointValue> mPointValues = new ArrayList<PointValue>();
-    public List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
-    String[] height;
-
-
 
 
     @Override
@@ -68,19 +60,15 @@ public class HeightFragment extends Fragment  {
         lineChart = (LineChartView) view.findViewById(R.id.line_chart);
         height_listview=(ListView)view.findViewById(R.id.heigh_listView);
         addheight=(Button)view.findViewById(R.id.add_height);
-
         initView();
         new Thread1().start();
-
         getAxisXLables();//获取x轴的标注
-
         return view;
 
 
     }
 
     private void initView(){
-
         addheight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,8 +77,6 @@ public class HeightFragment extends Fragment  {
         });
 
     }
-
-
 
     private void getAxisPoints() {
         for (int i = 0; i < height.length; i++) {
@@ -114,10 +100,7 @@ public class HeightFragment extends Fragment  {
                     try {
 
                         height=MyApplication.mDBMaster.heightDBDao.getvalue(user_name1);
-//                        Log.d("xtt",height[0]+"");
                         if(heightBeanList==null){
-
-
                             heightBeanList=MyApplication.mDBMaster.heightDBDao.getHeightNumByPage(user_name1);
                         }else{
                             heightBeanList.clear();
@@ -148,7 +131,6 @@ public class HeightFragment extends Fragment  {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 1://子线程获得了数据，开始刷新页面
-
                     DisplayChart();
                     getAxisPoints();//获取坐标点
                     initLineChart();//初始化

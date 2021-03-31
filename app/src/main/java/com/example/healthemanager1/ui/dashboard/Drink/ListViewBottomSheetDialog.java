@@ -25,24 +25,17 @@ public class ListViewBottomSheetDialog extends BottomSheetDialogFragment {
 
     private ListView drinkDbList;
     private BottomSheetBehavior<View> mBottomSheetBehavior;
-    ListViewBottomAdapter listViewBottomAdapter;
+    private ListViewBottomAdapter listViewBottomAdapter;
     private String user_name1= MyApplication.name.getName() ;
-    Context context;
-    String[] quantity;
-    String[] drinkName;
-    String[] drinkID;
+
+    private String[] quantity;
+    private String[] drinkName;
+    private String[] drinkID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.da_drink_bd_list, container, false);
         drinkDbList = (ListView) view.findViewById(R.id.da_drink_ba_list);
-
-
-
-
         new Thread1().start();
-
-
-
         return view;
     }
 
@@ -56,7 +49,6 @@ public class ListViewBottomSheetDialog extends BottomSheetDialogFragment {
     {
         super.onStart();
         Dialog dialog = getDialog();
-
         if (dialog != null) {
             View bottomSheet = dialog.findViewById(R.id.design_bottom_sheet);
             bottomSheet.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
@@ -86,10 +78,7 @@ public class ListViewBottomSheetDialog extends BottomSheetDialogFragment {
                 try {
                     try {
 
-
-
                         quantity=MyApplication.mDBMaster.drinkDBDao.getDrinkValue(user_name1,DayUtils.setDay(),1);
-
                         drinkName=MyApplication.mDBMaster.drinkDBDao.getDrinkValue(user_name1,DayUtils.setDay(),0);
                         drinkID=MyApplication.mDBMaster.drinkDBDao.getDrinkValue(user_name1,DayUtils.setDay(),2);
                         handler.sendEmptyMessage(1);
@@ -116,29 +105,16 @@ public class ListViewBottomSheetDialog extends BottomSheetDialogFragment {
 //                        progressBar.setVisibility(View.GONE);
 //                        tvDesc.setText("没有数据");
                     } else {
-
                         if (listViewBottomAdapter == null) { //第一次加载
                             listViewBottomAdapter = new ListViewBottomAdapter(getContext(),quantity,drinkName,drinkID);
                             drinkDbList.setAdapter(listViewBottomAdapter);
-
                         } else {
                             listViewBottomAdapter.notifyDataSetChanged();// 刷新listView 否则仍会从头开始 显
-
                         }
-
                         break;
                     }
             }
         }
     };
-
-
-
-
-
-
-
-
-
 
 }

@@ -20,36 +20,21 @@ import com.example.healthemanager1.application.MyApplication;
 public class NotificationsFragment extends Fragment {
     private NotificationsViewModel notificationsViewModel;
 
-    private TextView add_file,mf_data,txt_username,add_file1;
-    private Button open;
-
-    private Cursor mCursor;
-
-
-
+    private TextView add_file,txt_username;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         notificationsViewModel = new ViewModelProvider(this).get(NotificationsViewModel.class);
         View view = inflater.inflate(R.layout.fragment_notifications, container, false);
-
-//        mf_data=(TextView)view.findViewById(R.id.mf_data);
         add_file=(TextView)view.findViewById(R.id.add_file);
-//        open=(Button)view.findViewById(R.id.open);
         txt_username=(TextView)view.findViewById(R.id.txt_username);
-//        add_file1=(TextView)view.findViewById(R.id.add_file1);
-
         initView();
-
-
         return view;
     }
 
 
     private void initView() {
 
-
         txt_username.setText(MyApplication.name.getName());
-
         add_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,45 +42,6 @@ public class NotificationsFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
-//        open.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//
-//
-//                StringBuilder recvText = new StringBuilder();
-//
-//                mCursor = MyApplication.mDBMaster.dietDBDao.rawQuery("select * from Diet_table ", null);
-//
-//                while(mCursor.moveToNext()){// cursor.moveToNext() 向下移动一行,如果有内容，返回true
-//                    int nameColumnIndex = mCursor.getColumnIndex("name_id");
-//                    String[] myFloats = new String[mCursor.getCount()];
-//                    for (int i = 0; i < mCursor.getCount(); i++)
-//                    {
-//                        myFloats[i] = mCursor.getString(nameColumnIndex);
-//                        mCursor.moveToNext();
-//                        System.out.println(myFloats[i]);
-//                        recvText.append("\r\n"+myFloats[i]);
-//                    }
-//
-//                    System.out.println(recvText);
-//                    mf_data.setText("接收数据"+"\r\n"+recvText);
-//
-//                }
-//
-//                mCursor.close();
-//            }
-//        });
-//
-
-
-
-
-
-
-
 
     }
 

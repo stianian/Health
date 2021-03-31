@@ -22,26 +22,17 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 public class FragmentDialog extends BottomSheetDialogFragment implements CustomNumKeyView.CallBack{
 
 
-    private TextView allQuantity;
     private Button psy_money;
-    private TextView count;
-    private String name,quality,nameId;
-    private String user_name1= MyApplication.name.getName() ;
-    private  TextView dialogName,dialogQuality;
-    ImageView image;
+    private String name,quality,nameId,allQuality;
+    private TextView dialogName,dialogQuality,allQuantity;
+    private ImageView image;
     private CustomNumKeyView customNumKeyView;
     private EditText edit;
-
-    String allQuality;
+    private String user_name1= MyApplication.name.getName() ;
     public FragmentDialog(String name,String quality,String nameId) {
-
-
         this.name=name;
         this.quality=quality;
         this.nameId=nameId;
-
-
-
     }
 
 
@@ -52,11 +43,9 @@ public class FragmentDialog extends BottomSheetDialogFragment implements CustomN
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.da_diet_bottomdialog,container, false);
         psy_money=(Button)view.findViewById(R.id.pay_money);
-
         dialogName=(TextView)view.findViewById(R.id.dialog_name);
         dialogQuality=(TextView)view.findViewById(R.id.dialog_quality);
         allQuantity=(TextView)view.findViewById(R.id.allquantity);
-        count=(TextView)view.findViewById(R.id.etxt_num1);
         image=(ImageView)view.findViewById(R.id.image1);
 
         edit=(EditText) view.findViewById(R.id.edit);
@@ -71,16 +60,8 @@ public class FragmentDialog extends BottomSheetDialogFragment implements CustomN
 
     private void initViews(View view) {
 
-
-
-
-
         dialogName.setText(name);
-
         dialogQuality.setText(quality);
-
-
-
         int NameID=Integer.parseInt(nameId);
         if(NameID>=1&&NameID<=5){
             image.setBackgroundResource(DayUtils.breakfirst2[NameID-1]);
@@ -89,15 +70,10 @@ public class FragmentDialog extends BottomSheetDialogFragment implements CustomN
         }else if(NameID>=10&&NameID<=15){
             image.setBackgroundResource(DayUtils.dinner2[NameID-11]);
         }
-
-
         psy_money.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 affirm();
-
-
-
             }
         });
     }
@@ -114,10 +90,7 @@ public class FragmentDialog extends BottomSheetDialogFragment implements CustomN
     private void affirm() {
         allQuality=allQuantity.getText().toString();//
         DietBean dietBean =new DietBean(name,allQuality,nameId);
-
         MyApplication.mDBMaster.dietDBDao.addDiet(dietBean,user_name1, DayUtils.setDay());
-
-
 
     }
 

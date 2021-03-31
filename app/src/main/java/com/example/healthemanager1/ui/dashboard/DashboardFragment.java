@@ -37,18 +37,18 @@ public class DashboardFragment extends Fragment {
     private TextView diet1,diet2;
     private String user_name1= MyApplication.name.getName() ;
     private String step=MyApplication.step.getStep();
-    String[] height=null;
-    String weight[]=null;
-    String[] arr=null;
-    String[] arr1=null;
-    String str="6000";
-    String km;
-    String kk;
-    String drinkTarget;
+    private String[] height=null;
+    private String weight[]=null;
+    private String[] arr=null;
+    private String[] arr1=null;
+    private  String str="6000";
+    private String km;
+    private String kk;
+    private String drinkTarget;
     float drinkNum=0;
-    String[] breakFirst;
-    CircleProgress1View circleProgress1View,circleBreakFirst;
-    CardView card3,card2,card4;
+    private String[] breakFirst;
+    private CircleProgress1View circleProgress1View,circleBreakFirst;
+    private CardView card3,card2,card4;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -83,14 +83,6 @@ public class DashboardFragment extends Fragment {
         initview();
         return root;
     }
-
-
-
-
-
-
-
-
 
 
     public class Thread1 extends java.lang.Thread {
@@ -263,7 +255,6 @@ public class DashboardFragment extends Fragment {
 
     private void initview(){
 
-
         card4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -271,8 +262,6 @@ public class DashboardFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-
 
 
         add_tar.setOnClickListener(new View.OnClickListener() {
@@ -284,11 +273,7 @@ public class DashboardFragment extends Fragment {
                 new NumberPickerDialog(getContext(), new NumberPicker.OnValueChangeListener() {
                             @Override
                             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-
-
-
                                 String newValue = String.valueOf(newVal);
-
                                 MyApplication.mDBMaster.planDBDao.addStep(newValue,DayUtils.setDay());
 
                             }
@@ -323,14 +308,7 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-
-
     }
-
-
-
-
-
 
 
 
@@ -372,7 +350,6 @@ public class DashboardFragment extends Fragment {
         float x=Float.parseFloat(step);
         float y=Float.parseFloat(weight);
         float z=Float.parseFloat(height);
-
         float kk= (float) (x*y*z*0.145*0.8214/100000);
         float dd = (float)(Math.round(kk*100))/100;//保留两位
         String k=String.valueOf(dd);
@@ -387,9 +364,7 @@ public class DashboardFragment extends Fragment {
      * @return
      */
     private String readValue(){
-
         SharedPreferences sp=getActivity().getSharedPreferences("drink", Activity.MODE_PRIVATE);
-
         return sp.getString("drinkValue" , "");
     }
     

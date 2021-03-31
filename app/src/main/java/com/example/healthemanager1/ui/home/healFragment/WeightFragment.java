@@ -42,26 +42,13 @@ public class WeightFragment extends Fragment {
 
 	public LineChartView lineChart;
 	private Button addweight;
-
 	private ListView weight_listview;
 	private WeightFragment.WeightAdapter weightAdapter;
-
-
-
-	String[] weight;
-
-
-
+	private String[] weight;
 	private List<WeightBean> weightBeans;
-
-	private int totalPage;
 	public int totalcount = MyApplication.mDBMaster.weightDBDao.getWeightCount();
 	private String[] name_num=new String[totalcount];
-
-
-
 	private String user_name1= MyApplication.name.getName() ;
-
 	public List<PointValue> mPointValues = new ArrayList<PointValue>();
 	public List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
 	@Override
@@ -73,8 +60,6 @@ public class WeightFragment extends Fragment {
 		weight_listview=(ListView)view.findViewById(R.id.weigh_listView);
 		addweight=(Button)view.findViewById(R.id.add_weight);
 		initView();
-
-
 		new Thread1().start();
 		getAxisXLables();//获取x轴的标注
 
@@ -86,7 +71,6 @@ public class WeightFragment extends Fragment {
 
 
 	private void initView(){
-
 		addweight.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -108,7 +92,6 @@ public class WeightFragment extends Fragment {
 						weight=MyApplication.mDBMaster.weightDBDao.getvalue(user_name1);
 						if(weightBeans==null){
 							weightBeans=MyApplication.mDBMaster.weightDBDao.getWeightNumByPage(user_name1);
-
 						}else{
 							weightBeans.clear();
 							weightBeans.addAll(MyApplication.mDBMaster.weightDBDao.getWeightNumByPage(user_name1));
@@ -136,13 +119,8 @@ public class WeightFragment extends Fragment {
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 				case 1://子线程获得了数据，开始刷新页面
-
 					DisplayChart();
-
-//                    getAxisXLables();//获取x轴的标注
 					getAxisPoints();//获取坐标点
-
-
 					initLineChart();//初始化
 
 					if (weightBeans.size() == 0) {// 没有黑名单的情况
@@ -346,9 +324,6 @@ public class WeightFragment extends Fragment {
 					notifyDataSetChanged();
 				}
 			});
-
-
-
 
 			return convertView;
 		}
