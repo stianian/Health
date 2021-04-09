@@ -78,11 +78,7 @@
     </style>
 
 
-    <style name="texts">    <!--字体二 样式-->
-        <item name="android:textSize">35dp</item>  <!--设置大小-->
-        <item name="android:color">@color/purple_200</item>  <!--设置颜色-->
 
-    </style>
 
 
     <style name="main_title_bar_style">
@@ -101,18 +97,6 @@
     </style>
 
 
-
-    <style name="textStyle_01">  <!--字体一 样式-->
-        <item name="android:textSize"> 20dp</item>  <!--设置大小-->
-        <item name="android:color">@color/black</item>   <!--设置颜色-->
-        <item name="android:layout_marginBottom">15dp</item>
-    </style>
-
-    <style name="tetStyle_02">    <!--字体二 样式-->
-        <item name="android:textSize">35dp</item>  <!--设置大小-->
-        <item name="android:color">#FF4081</item>  <!--设置颜色-->
-        <item name="android:alpha">0.5</item>   <!--设置透明度-->
-    </style>
 
     <declare-styleable name="hpillar">
         <!--XY轴颜色-->
@@ -140,6 +124,12 @@
         <!--每个柱子的高度-->
         <attr name="pillar_height" format="dimension"/>
     </declare-styleable>
+
+
+
+
+
+
 
 
 

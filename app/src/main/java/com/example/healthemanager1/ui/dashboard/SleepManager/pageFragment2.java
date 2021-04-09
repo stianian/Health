@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewDebug;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -50,6 +51,8 @@ public class pageFragment2 extends Fragment {
     private String[] arr;
     private CircleProgressView circleProgressView;
     private TextView sp1,sp2;
+    private Button btSeven,btThirty;
+    private int selectDay=7;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -61,6 +64,23 @@ public class pageFragment2 extends Fragment {
         circleProgressView = (CircleProgressView) view.findViewById(R.id.circleProgressView);
         sp1=(TextView)view.findViewById(R.id.sp1);
         sp2=(TextView)view.findViewById(R.id.sp2);
+        btSeven=(Button)view.findViewById(R.id.seven_day);
+        btThirty=(Button)view.findViewById(R.id.thirty_day);
+
+        btSeven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectDay=7;
+                initDate();
+            }
+        });
+        btThirty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectDay=30;
+                initDate();
+            }
+        });
         new Thread().start();
 
 
@@ -77,7 +97,6 @@ public class pageFragment2 extends Fragment {
             while (true) {
                 try {
                     try {
-
                         arr= MyApplication.mDBMaster.planDBDao.getvalue2(user_name1,2);
                         handler.sendEmptyMessage(1);
                     } catch (Exception e) {
@@ -219,12 +238,10 @@ public class pageFragment2 extends Fragment {
             two=range.substring(3,5);
             char first1 = range.charAt(0);
             rHour=Float.parseFloat(String.valueOf(first1));
-
         }else {
             first=range.substring(0,2);
             rHour=Float.parseFloat(first);
             two=range.substring(4,6);
-
         }
         int minute=Integer.parseInt(two);
         DecimalFormat df=new DecimalFormat("0.00");//设置保留位数
@@ -232,7 +249,6 @@ public class pageFragment2 extends Fragment {
         float rMinute= Float.parseFloat(str);
         float rangeTime=(float)(Math.round((rHour+rMinute)*100))/100;
         return rangeTime;
-
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -241,25 +257,17 @@ public class pageFragment2 extends Fragment {
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_MONTH, amount);
         date = calendar.getTime();
-
         return date;
     }
 
 
     /**
-     * 其中有一个问题
-     * 数据和日期不对应，因为先取的数据，填满7个，再填的日期 21/3.24
+     *
      */
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initDate() {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date date1 = new Date();
-
-        /*========== 柱状图数据填充 ==========*/
-//        String[] range= MyApplication.mDBMaster.planDBDao.getvalue2(user_name1,0);
-//        String[] date=MyApplication.mDBMaster.planDBDao.getvalue2(user_name1,1);
-//
-//        int start=0;
 
         List<Column> columnList = new ArrayList<>(); //柱子列表
         List<SubcolumnValue> subcolumnValueList;     //子柱列表（即一个柱子，因为一个柱子可分为多个子柱）
@@ -285,9 +293,9 @@ public class pageFragment2 extends Fragment {
 //
 //        }
 
-        for (int i = 0; i < 7; ++i) {
+        for (int i = 0; i < selectDay; ++i) {
             subcolumnValueList = new ArrayList<>();//每个子柱的集合
-            String d = simpleDateFormat.format(getNextDate(date1,i-6));
+            String d = simpleDateFormat.format(getNextDate(date1,i-selectDay+1));
             String x=null;
             x=MyApplication.mDBMaster.planDBDao.getSleepValue(user_name1,d);
             float range1;

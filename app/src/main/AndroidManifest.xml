@@ -2,12 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.healthemanager1">
 
-    <uses-permission
-        android:name="android.hardware.sensor.stepcounter" />
-    <uses-permission
-        android:name="feature:android.hardware.sensor.stepdetector"/>
-
-
+    <uses-permission android:name="android.hardware.sensor.stepcounter" />
+    <uses-permission android:name="feature:android.hardware.sensor.stepdetector"/>
 
     <!--安卓10.0版本以上必须申请的健身运动权限-->
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
@@ -15,27 +11,19 @@
 
     <application
         android:name="com.example.healthemanager1.application.MyApplication"
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Test"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-            android:theme="@style/Theme.HealtheManager1"
+        android:theme="@style/Theme.HealtheManager1"
         >
-
         <activity
             android:name=".MainActivity"
-
             android:label="Test">
-
         </activity>
-
         <activity android:name=".RegisterInformation">
-
         </activity>
-
-
         <activity android:name=".ui.home.healFragment.HealthActivity"
             android:theme="@style/AppTheme"
             >
@@ -43,40 +31,30 @@
         <activity android:name=".Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity android:name=".Login.LostFindActivity"
             android:theme="@style/Theme.HealtheManager1">
         </activity>
         <activity android:name=".Login.RegisterActivity"
             android:theme="@style/Theme.HealtheManager1">
-
         </activity>
-
         <activity android:name=".ui.dashboard.Diet.FManagerActivity"
             android:theme="@style/Theme.HealtheManager1">
-
-
         </activity>
         <activity android:name=".ui.dashboard.SleepManager.SleepActivity"
             android:theme="@style/SleepTheme">
-
-
         </activity>
-
-
         <activity android:name=".ui.dashboard.Drink.ThirstyActivity"
             android:theme="@style/SleepTheme">
-
-
         </activity>
         <activity android:name=".ui.dashboard.Drink.DrinkTableActivity"
             android:theme="@style/SleepTheme">
+        </activity>
 
-
+        <activity android:name=".ui.home.newActivity"
+            android:theme="@style/SleepTheme">
         </activity>
     </application>
 

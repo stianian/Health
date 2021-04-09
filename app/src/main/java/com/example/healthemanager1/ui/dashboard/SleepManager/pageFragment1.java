@@ -93,8 +93,6 @@ public  class pageFragment1 extends Fragment {
                 year1=String.valueOf(year);
                 month1=String.valueOf(month);
                 day1=String.valueOf(day);
-
-
                 if(month>calendar.get(Calendar.MONTH)){
                     Toast.makeText(getContext(), "不能记录未来的日子", Toast.LENGTH_SHORT).show();
                 }else if(month==calendar.get(Calendar.MONTH)){
@@ -134,6 +132,11 @@ public  class pageFragment1 extends Fragment {
             }
         });
     }
+
+
+
+
+
 
 
     /**

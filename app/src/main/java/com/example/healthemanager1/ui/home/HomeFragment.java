@@ -16,10 +16,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.healthemanager1.R;
 import com.example.healthemanager1.ui.home.healFragment.HealthActivity;
 import com.example.healthemanager1.application.MyApplication;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeFragment extends Fragment   {
 
@@ -31,6 +36,9 @@ public class HomeFragment extends Fragment   {
     private ArrayAdapter<String> adapter;
     private MyApplication allname;
     private static String spinnerValse="";
+    private ViewPager viewPager;
+    private View view1,view2,view3;
+    private List<View> viewList;//view数组
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
@@ -43,6 +51,20 @@ public class HomeFragment extends Fragment   {
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new SpinnerSelectedListener());
         spinner.setVisibility(View.VISIBLE); //设置默认值
+
+        viewPager=(ViewPager)view.findViewById(R.id.view_pager);
+        view1=inflater.inflate(R.layout.viewpagelayout1,container,false);
+        view2=inflater.inflate(R.layout.viewpagelayout2,container,false);
+        view3=inflater.inflate(R.layout.viewpagelayour3,container,false);
+
+        viewList = new ArrayList<View>();
+        viewList.add(view1);
+        viewList.add(view2);
+        viewList.add(view3);
+        MyAdapter pagerAdapter = new MyAdapter();
+        viewPager.setAdapter(pagerAdapter);
+
+
         more_such.setOnClickListener(new View.OnClickListener(){
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
@@ -59,8 +81,6 @@ public class HomeFragment extends Fragment   {
         bmi=(TextView)view.findViewById(R.id.BMI);
         max_rata=(TextView)view.findViewById(R.id.max_rate);
         static_rata=(TextView)view.findViewById(R.id.static_rate);
-
-
         return view;
     }
 
@@ -136,6 +156,41 @@ public class HomeFragment extends Fragment   {
             name.setText("还没有用户");
         }
     }
+
+
+
+
+
+    private  class  MyAdapter extends PagerAdapter {
+        @Override
+        public boolean isViewFromObject(View arg0, Object arg1) {
+            // TODO Auto-generated method stub
+            return arg0 == arg1;
+        }
+
+        @Override
+        public int getCount() {
+            // TODO Auto-generated method stub
+            return viewList.size();
+        }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position,
+                                Object object) {
+            // TODO Auto-generated method stub
+            container.removeView(viewList.get(position));
+        }
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
+            // TODO Auto-generated method stub
+            container.addView(viewList.get(position));
+
+
+            return viewList.get(position);
+        }
+    }
+
+
 
 
     /**

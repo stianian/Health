@@ -145,24 +145,44 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:orientation="vertical">
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:textSize="18dp"
-            android:textColor="@color/black"
-            android:text="睡眠时长"/>
-            <lecho.lib.hellocharts.view.ColumnChartView
+            android:layout_gravity="right"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:text="睡眠时长"/>
+
+            <Button
+                android:id="@+id/seven_day"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="七天" />
+
+            <Button
+                android:id="@+id/thirty_day"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="一个月" />
+
+        </LinearLayout>
+        <lecho.lib.hellocharts.view.ColumnChartView
                 android:id="@+id/column_chart"
                 android:layout_width="fill_parent"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
                 android:layout_height="fill_parent"
-
                 android:layout_alignParentTop="false"/>
-        </LinearLayout>
+
+
+    </LinearLayout>
 
 
 
